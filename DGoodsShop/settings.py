@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop',
     'accounts',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -124,4 +125,4 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 
 MEDIA_URL = '/media/'
-MDEIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
