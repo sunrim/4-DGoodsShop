@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} 회원가입{% endblock %}
+
+{% block content %}
+회원가입 정보를 입력하세요.
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="회원가입">
+    </form>
+{% endblock %}
