@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} 그냥로그인{% endblock %}
+
+{% block content %}
+    로그인 정보를 입력하세요.
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="그냥로그인">
+    </form>
+{% endblock %}
