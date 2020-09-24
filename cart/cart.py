@@ -12,6 +12,8 @@ class Cart:
         if not cart:
             cart = self.session[settings.CART_ID] = {}
 
+        self.cart = cart
+
 
     def __str__(self):
         return self.cart
@@ -48,6 +50,7 @@ class Cart:
         self.save()
     
     def remove(self,product):               #cart에서 product  삭제하자
+        product.id = str(product.id)
         if product.id in self.cart:
             del self.cart[product.id]
             self.save()
