@@ -35,15 +35,30 @@ class Cart:
 
             yield item
 
-    def add(self, product, quantity = 1):   #cart에 product 추가하자
-        pass
+    def add(self, product, quantity=1, is_update=False):  # cart에 product 추가하자
+        if product.id not in self.cart:
+            self.cart[product.id] = {'quantity': 0, 'price': str(product.price)}
+
+        if is_update:
+            self.cart[product.id]['quantity'] = quantity
+        else:
+            self.cart[product.id]['quantity'] += quantity
+
+        self.save()
     
     def remove(self,product):               #cart에서 product  삭제하자
-        pass
+        if product.id in self.cart:
+            del self.cart[product.id]
+            self.save()
+
     def save(self):                         #cart를 session에 저장하자
-        pass
+        self.session[settings.CART_ID] = self.cart
+        self.session.modified = True
+
     def clear(self):                        #cart를 비우자
-        pass
+        self.session[settings.CART_ID] = {}
+        self.session.modified = True
+
     def get_product_total(self):            #cart의 product 가격 합계를 나타내자
-        pass
+        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 
